@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:zooma/secondScreen.dart';
+import 'package:zooma/styles.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,8 +32,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Color(0xFFFFB04E),
           width: MediaQuery.of(context).size.width,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SvgPicture.asset(
@@ -48,11 +48,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 300.0,
               ),
               Text(
-                'You have pushed the button this many times:',
+                'Get Inspired',
+                style: fontHeaderDetails,
               ),
               Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headline4,
+                'Don\'t know what to eat?,Take a picture, we\'ll suggest things to cook with your ingredents.',
+                textAlign: TextAlign.center,
+                style: fontDetails,
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SecondScreen()));
+                },
+                child: Text('Next'),
               ),
             ],
           ),
