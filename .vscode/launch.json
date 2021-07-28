@@ -15,5 +15,7 @@
             "type": "dart",
             "flutterMode": "profile"
         }
-    ]
+    ],
+    "dart.flutterSdkPath": "/Users/macuser/Desktop/training/zooma/fvm/flutter_sdk",
+    "dart.sdkPath": "/Users/macuser/Desktop/training/zooma/fvm/flutter_sdk/bin/dart",
 }

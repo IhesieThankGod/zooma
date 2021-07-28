@@ -1,40 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:zooma/thirdscreen.dart';
 
 import 'styles.dart';
 
 class SecondScreen extends StatelessWidget {
+  final int index;
+  final PageController? controller;
+  final List<String> title = [
+    "Get Started",
+    "Easy & Healthy",
+    "Save your favourties"
+  ];
+
+  final colors = [
+    Color(0xFFFFB04E),
+    Color(0xFFFFBE97),
+    Color(0xFF1FB090),
+  ];
+
+  final List<String> subtitle = [
+    "Don't know what to eat? Take a\npicture we'll suggest things to\ncook with your ingredients",
+    "Find thousands of easy and \n healthy recipes so you save \ntime and eat better.",
+    "Save your favourites recipes and\nget reminders to buy the\ningredients to cook them."
+  ];
+
+  SecondScreen(this.index, this.controller);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          color: Color(0xFFFFB04E),
+          color: colors[index],
           width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SvgPicture.asset(
-                "tgassets/1.svg",
+                "tgassets/$index.svg",
                 height: 300.0,
               ),
               Text(
-                'Easy & healthy',
-                style: fontHeaderDetails,
+                title[index],
+                style: ZoomaTextStyle.fontHeaderDetails,
               ),
               Text(
-                'Find thousands of easy and \n healthy recipes so you save \n time and eat better.',
+                subtitle[index],
                 textAlign: TextAlign.center,
-                style: fontDetails,
+                style: ZoomaTextStyle.fontDetails,
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => ThirdScreen()));
+                  if (index == 2) {
+                    controller!.jumpToPage(0);
+                  } else {
+                    controller!.jumpToPage(index + 1);
+                  }
                 },
-                child: Text('Next'),
+                child: Text(index == 2 ? "Previous" : 'Next'),
               ),
             ],
           ),
